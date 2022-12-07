@@ -10,7 +10,7 @@ namespace SeminarMicroservice.Entity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public string No { get; set; }
+        public string CccdId { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Sex { get; set; }

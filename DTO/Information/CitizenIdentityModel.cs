@@ -5,7 +5,7 @@ namespace SeminarMicroservice.DTO.Information
 {
     public class CitizenIdentityModel
     {
-        public string No { get; set; }
+        public string CccdId { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Sex { get; set; }
@@ -22,7 +22,7 @@ namespace SeminarMicroservice.DTO.Information
 
         public CitizenIdentityModel(CitizenIdentity citizenIdentity)
         {
-            No = citizenIdentity.No;
+            CccdId = citizenIdentity.CccdId;
             FullName = citizenIdentity.FullName;
             DateOfBirth = citizenIdentity.DateOfBirth;
             Sex = citizenIdentity.Sex;

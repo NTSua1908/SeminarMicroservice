@@ -113,7 +113,7 @@ namespace SeminarMicroservice.Extentions
                 {
                     Id = Guid.NewGuid(),
                     UserId = citizenId,
-                    No = "037153000257",
+                    CccdId = "037153000257",
                     FullName = "Nguyen Van A",
                     DateOfBirth = new DateTime(1990, 12, 3),
                     Sex = Gender.Male,
@@ -125,6 +125,49 @@ namespace SeminarMicroservice.Extentions
                     IssueDate = new DateTime(2020, 8, 1),
                     GrantorName = "Nguyễn Cục Trưởng",
                     TitleOfGrantor = "Cục trưởng cục cảnh sát quản lý hành chính về trật tự xã hội"
+                }
+            );
+
+            builder.Entity<HealthInsurance>().HasData(
+                new HealthInsurance()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = citizenId,
+                    IdCard = "CN3010003500099",
+                    FullName = "Nguyen Van A",
+                    DateOfBirth = new DateTime(1990, 12, 3),
+                    Sex = Gender.Male,
+                    Nationality = "Vietnam",
+                    AreaCode = "K1",
+                    Address = "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh",
+                    FirstInsuranceHealthCareProvider = "TTYT Quận 6",
+                    InsuranceHealthCareCode = "01-123",
+                    IssueDate = new DateTime(2020, 7, 14),
+                    ValidDate = new DateTime(2020, 6, 25),
+                    FiveYearsDate = new DateTime(2025, 7, 14),
+                    GrantorName = "Nguyễn Giám Đốc",
+                    TitleOfGrantor = "Giám đốc bảo hiểm xã hội TP Hồ Chí Minh"
+                }
+            );
+
+            builder.Entity<DrivingLicense>().HasData(
+                new DrivingLicense()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = citizenId,
+                    IdCard = "601195002226",
+                    FullName = "Nguyen Van A",
+                    DateOfBirth = new DateTime(1990, 12, 3),
+                    Nationality = "Vietnam",
+                    Address = "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh",
+                    Class = "A1",
+                    PlaceOfIssue = "TP Hồ Chí Minh",
+                    ClassificationOfMotorVehicles = "Xe mô tô hai bánh có dung tích xi-lanh từ 50 - dưới 175 cm3",
+                    DateOfIssue = new DateTime(2020, 7, 14),
+                    Expires = new DateTime(2020, 6, 25),
+                    BeginningDate = new DateTime(2020, 6, 25),
+                    GrantorName = "Nguyễn Giám Đốc",
+                    TitleOfGrantor = "Giám đốc công an"
                 }
             ); ;
         }

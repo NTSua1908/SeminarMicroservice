@@ -201,7 +201,7 @@ namespace SeminarMicroservice.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    No = table.Column<string>(type: "longtext", nullable: false)
+                    CccdId = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FullName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -241,7 +241,7 @@ namespace SeminarMicroservice.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    No = table.Column<string>(type: "longtext", nullable: false)
+                    IdCard = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FullName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -252,8 +252,7 @@ namespace SeminarMicroservice.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PlaceOfIssue = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DateOfIssue = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateOfIssue = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Class = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Expires = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -289,7 +288,7 @@ namespace SeminarMicroservice.Migrations
                     FullName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
+                    Sex = table.Column<int>(type: "int", nullable: false),
                     Nationality = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AreaCode = table.Column<string>(type: "longtext", nullable: false)
@@ -302,8 +301,7 @@ namespace SeminarMicroservice.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ValidDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     FiveYearsDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IssueDate = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IssueDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     GrantorName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     TitleOfGrantor = table.Column<string>(type: "longtext", nullable: false)
@@ -328,8 +326,8 @@ namespace SeminarMicroservice.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "6782f8b7-389d-4ea3-94c3-9b97184b0be2", "Citizen", "CITIZEN" },
-                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "f1b221ba-ac0e-4e57-88ec-485db3d10c07", "Admin", "ADMIN" }
+                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "796ba66d-3d3d-4fe0-9e14-bcaa4dc2e4ee", "Citizen", "CITIZEN" },
+                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "6ce6f3f3-ac84-469e-96a7-8ee4b96c18e1", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -337,24 +335,33 @@ namespace SeminarMicroservice.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DisplayName", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "69BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "Admin", "admin@gmail.com", true, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEABJFNvFFzL9N3iVy8QxUfq2mcxCwzuRA+XdeDeEbCCfznfYtoWY+xCON9td/3GlnA==", "0397352016", false, "", false, "admin@gmail.com" },
-                    { "70BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "Nguyen Van A", "citizen@gmail.com", true, false, null, "CITIZEN@GMAIL.COM", "037153000257", "AQAAAAEAACcQAAAAEE/4qTRIUO+J4s3kB4oF7/xKaEFiCwbF9sVhz1psEPPx/GLDT78NzoQI6XIDN+x6qA==", "0397352016", false, "", false, "037153000257" }
+                    { "69BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "Admin", "admin@gmail.com", true, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEHOL3nMDVqulfZR+HGhqo73qwuCJnniNwKVGSXyOXZfQbObdnAsmr0kdQfu3LnY+1w==", "0397352016", false, "", false, "admin@gmail.com" },
+                    { "70BD714F-9576-45BA-B5B7-F00649BE00DE", 0, "ba637654-70af-4542-be74-08c7b7329679", "Nguyen Van A", "citizen@gmail.com", true, false, null, "CITIZEN@GMAIL.COM", "037153000257", "AQAAAAEAACcQAAAAEC8/nBiT+Sfy6yEWsKzkSk+b+GLST7tfcEa5K+7UHthxuZ++DOXGfB0zSD2I3jFfaA==", "0397352016", false, "", false, "037153000257" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "70BD714F-9576-45BA-B5B7-F00649BE00DE" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "69BD714F-9576-45BA-B5B7-F00649BE00DE" });
+                values: new object[,]
+                {
+                    { "1B3D7E19-B1A5-4CA2-A491-54593FA16531", "70BD714F-9576-45BA-B5B7-F00649BE00DE" },
+                    { "8D04DCE2-969A-435D-BBA4-DF3F325983DC", "69BD714F-9576-45BA-B5B7-F00649BE00DE" }
+                });
 
             migrationBuilder.InsertData(
                 table: "CitizenIdentities",
-                columns: new[] { "Id", "DateOfBirth", "DateOfExpiry", "FullName", "GrantorName", "IssueDate", "Nationality", "No", "PersonalIdentification", "PlaceOfOrigin", "PlaceOfResidence", "Sex", "TitleOfGrantor", "UserId" },
-                values: new object[] { new Guid("8140e164-d679-40b4-8e17-6945af33b194"), new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen Van A", "Nguyễn Cục Trưởng", new DateTime(2020, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vietnam", "037153000257", "Sẹo đuôi mắt trái", "Tân Hòa Đông, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh", "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh", 0, "Cục trưởng cục cảnh sát quản lý hành chính về trật tự xã hội", "70BD714F-9576-45BA-B5B7-F00649BE00DE" });
+                columns: new[] { "Id", "CccdId", "DateOfBirth", "DateOfExpiry", "FullName", "GrantorName", "IssueDate", "Nationality", "PersonalIdentification", "PlaceOfOrigin", "PlaceOfResidence", "Sex", "TitleOfGrantor", "UserId" },
+                values: new object[] { new Guid("6b1c1de1-2588-44e7-87e9-3a15d11f87e2"), "037153000257", new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen Van A", "Nguyễn Cục Trưởng", new DateTime(2020, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vietnam", "Sẹo đuôi mắt trái", "Tân Hòa Đông, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh", "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh", 0, "Cục trưởng cục cảnh sát quản lý hành chính về trật tự xã hội", "70BD714F-9576-45BA-B5B7-F00649BE00DE" });
+
+            migrationBuilder.InsertData(
+                table: "DrivingLicenses",
+                columns: new[] { "Id", "Address", "BeginningDate", "Class", "ClassificationOfMotorVehicles", "DateOfBirth", "DateOfIssue", "Expires", "FullName", "GrantorName", "IdCard", "Nationality", "PlaceOfIssue", "TitleOfGrantor", "UserId" },
+                values: new object[] { new Guid("ea30789f-83d5-4810-b008-33fcea5a03b8"), "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh", new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "A1", "Xe mô tô hai bánh có dung tích xi-lanh từ 50 - dưới 175 cm3", new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen Van A", "Nguyễn Giám Đốc", "601195002226", "Vietnam", "TP Hồ Chí Minh", "Giám đốc công an", "70BD714F-9576-45BA-B5B7-F00649BE00DE" });
+
+            migrationBuilder.InsertData(
+                table: "HealthInsurances",
+                columns: new[] { "Id", "Address", "AreaCode", "DateOfBirth", "FirstInsuranceHealthCareProvider", "FiveYearsDate", "FullName", "GrantorName", "IdCard", "InsuranceHealthCareCode", "IssueDate", "Nationality", "Sex", "TitleOfGrantor", "UserId", "ValidDate" },
+                values: new object[] { new Guid("431e6f5f-e608-47de-bee1-98d494baa913"), "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh", "K1", new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "TTYT Quận 6", new DateTime(2025, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen Van A", "Nguyễn Giám Đốc", "CN3010003500099", "01-123", new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vietnam", 0, "Giám đốc bảo hiểm xã hội TP Hồ Chí Minh", "70BD714F-9576-45BA-B5B7-F00649BE00DE", new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

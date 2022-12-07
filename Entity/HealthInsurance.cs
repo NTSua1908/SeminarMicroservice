@@ -12,7 +12,7 @@ namespace SeminarMicroservice.Entity
         public string IdCard { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Gender Gender { get; set; }
+        public Gender Sex { get; set; }
         public string Nationality { get; set; }
         public string AreaCode { get; set; }
         public string Address { get; set; }
@@ -20,7 +20,7 @@ namespace SeminarMicroservice.Entity
         public string InsuranceHealthCareCode { get; set; }
         public DateTime ValidDate { get; set; }
         public DateTime FiveYearsDate { get; set; }
-        public string IssueDate { get; set; }
+        public DateTime IssueDate { get; set; }
         public string GrantorName { get; set; }
         public string TitleOfGrantor { get; set; }
         public string UserId { get; set; }

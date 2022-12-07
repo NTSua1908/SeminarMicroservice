@@ -11,7 +11,7 @@ using SeminarMicroservice.Entity;
 namespace SeminarMicroservice.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20221207042654_Init")]
+    [Migration("20221207073131_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,10 @@ namespace SeminarMicroservice.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("CccdId")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
@@ -132,10 +136,6 @@ namespace SeminarMicroservice.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Nationality")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("No")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -172,14 +172,14 @@ namespace SeminarMicroservice.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8140e164-d679-40b4-8e17-6945af33b194"),
+                            Id = new Guid("6b1c1de1-2588-44e7-87e9-3a15d11f87e2"),
+                            CccdId = "037153000257",
                             DateOfBirth = new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfExpiry = new DateTime(2025, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FullName = "Nguyen Van A",
                             GrantorName = "Nguyễn Cục Trưởng",
                             IssueDate = new DateTime(2020, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nationality = "Vietnam",
-                            No = "037153000257",
                             PersonalIdentification = "Sẹo đuôi mắt trái",
                             PlaceOfOrigin = "Tân Hòa Đông, Bình Trị Đông, Bình Tân, Thành phố Hồ Chí Minh",
                             PlaceOfResidence = "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh",
@@ -213,9 +213,8 @@ namespace SeminarMicroservice.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DateOfIssue")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime(6)");
@@ -228,11 +227,11 @@ namespace SeminarMicroservice.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Nationality")
+                    b.Property<string>("IdCard")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("No")
+                    b.Property<string>("Nationality")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -254,6 +253,26 @@ namespace SeminarMicroservice.Migrations
                         .IsUnique();
 
                     b.ToTable("DrivingLicenses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ea30789f-83d5-4810-b008-33fcea5a03b8"),
+                            Address = "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh",
+                            BeginningDate = new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Class = "A1",
+                            ClassificationOfMotorVehicles = "Xe mô tô hai bánh có dung tích xi-lanh từ 50 - dưới 175 cm3",
+                            DateOfBirth = new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfIssue = new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Expires = new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullName = "Nguyen Van A",
+                            GrantorName = "Nguyễn Giám Đốc",
+                            IdCard = "601195002226",
+                            Nationality = "Vietnam",
+                            PlaceOfIssue = "TP Hồ Chí Minh",
+                            TitleOfGrantor = "Giám đốc công an",
+                            UserId = "70BD714F-9576-45BA-B5B7-F00649BE00DE"
+                        });
                 });
 
             modelBuilder.Entity("SeminarMicroservice.Entity.HealthInsurance", b =>
@@ -284,9 +303,6 @@ namespace SeminarMicroservice.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
                     b.Property<string>("GrantorName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -299,13 +315,15 @@ namespace SeminarMicroservice.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("IssueDate")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Nationality")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("int");
 
                     b.Property<string>("TitleOfGrantor")
                         .IsRequired()
@@ -324,6 +342,27 @@ namespace SeminarMicroservice.Migrations
                         .IsUnique();
 
                     b.ToTable("HealthInsurances");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("431e6f5f-e608-47de-bee1-98d494baa913"),
+                            Address = "351/5A An Dương Vương, Phường 10, Quận 6, Thành phố Hồ Chí Minh",
+                            AreaCode = "K1",
+                            DateOfBirth = new DateTime(1990, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstInsuranceHealthCareProvider = "TTYT Quận 6",
+                            FiveYearsDate = new DateTime(2025, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullName = "Nguyen Van A",
+                            GrantorName = "Nguyễn Giám Đốc",
+                            IdCard = "CN3010003500099",
+                            InsuranceHealthCareCode = "01-123",
+                            IssueDate = new DateTime(2020, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nationality = "Vietnam",
+                            Sex = 0,
+                            TitleOfGrantor = "Giám đốc bảo hiểm xã hội TP Hồ Chí Minh",
+                            UserId = "70BD714F-9576-45BA-B5B7-F00649BE00DE",
+                            ValidDate = new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("SeminarMicroservice.Entity.User", b =>
@@ -406,7 +445,7 @@ namespace SeminarMicroservice.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEABJFNvFFzL9N3iVy8QxUfq2mcxCwzuRA+XdeDeEbCCfznfYtoWY+xCON9td/3GlnA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHOL3nMDVqulfZR+HGhqo73qwuCJnniNwKVGSXyOXZfQbObdnAsmr0kdQfu3LnY+1w==",
                             PhoneNumber = "0397352016",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
@@ -424,7 +463,7 @@ namespace SeminarMicroservice.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CITIZEN@GMAIL.COM",
                             NormalizedUserName = "037153000257",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE/4qTRIUO+J4s3kB4oF7/xKaEFiCwbF9sVhz1psEPPx/GLDT78NzoQI6XIDN+x6qA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC8/nBiT+Sfy6yEWsKzkSk+b+GLST7tfcEa5K+7UHthxuZ++DOXGfB0zSD2I3jFfaA==",
                             PhoneNumber = "0397352016",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
@@ -462,14 +501,14 @@ namespace SeminarMicroservice.Migrations
                         new
                         {
                             Id = "8D04DCE2-969A-435D-BBA4-DF3F325983DC",
-                            ConcurrencyStamp = "f1b221ba-ac0e-4e57-88ec-485db3d10c07",
+                            ConcurrencyStamp = "6ce6f3f3-ac84-469e-96a7-8ee4b96c18e1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "1B3D7E19-B1A5-4CA2-A491-54593FA16531",
-                            ConcurrencyStamp = "6782f8b7-389d-4ea3-94c3-9b97184b0be2",
+                            ConcurrencyStamp = "796ba66d-3d3d-4fe0-9e14-bcaa4dc2e4ee",
                             Name = "Citizen",
                             NormalizedName = "CITIZEN"
                         });

@@ -32,5 +32,33 @@ namespace SeminarMicroservice.Services.Implement
 
             return new CitizenIdentityModel(identity);
         }
+
+        public DrivingLicenseModel GetDrivingLicenseByToken()
+        {
+            DrivingLicense drivingLicense = _dbContext.DrivingLicenses.Where(x => x.UserId == _user.GetUser()).FirstOrDefault()!;
+
+            return new DrivingLicenseModel(drivingLicense);
+        }
+
+        public PaginationModel<DrivingLicenseModel> GetDrivingLicenses(PaginationRequest req)
+        {
+            List<DrivingLicense> drivingLicenses = _dbContext.DrivingLicenses.AsNoTracking().ToList();
+            var drivingLicenseModels = drivingLicenses.Select(x => new DrivingLicenseModel(x)).ToList();
+            return new PaginationModel<DrivingLicenseModel>(req, drivingLicenseModels);
+        }
+
+        public HealthInsuranceModel GetHealthInsuranceByToken()
+        {
+            HealthInsurance healthInsurance = _dbContext.HealthInsurances.Where(x => x.UserId == _user.GetUser()).FirstOrDefault()!;
+
+            return new HealthInsuranceModel(healthInsurance);
+        }
+
+        public PaginationModel<HealthInsuranceModel> GetHealthInsurances(PaginationRequest req)
+        {
+            List<HealthInsurance> healthInsurances = _dbContext.HealthInsurances.AsNoTracking().ToList();
+            var healthInsuranceModels = healthInsurances.Select(x => new HealthInsuranceModel(x)).ToList();
+            return new PaginationModel<HealthInsuranceModel>(req, healthInsuranceModels);
+        }
     }
 }

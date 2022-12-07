@@ -23,7 +23,7 @@ namespace SeminarMicroservice.Helper
 
             var tokenProperties = new JwtSecurityToken(
                 JWTToken.JwtIssuer,
-                JWTToken.JwtIssuer,
+                JWTToken.JwtAudienceId,
                 claims,
                 expires: expires,
                 signingCredentials: creds

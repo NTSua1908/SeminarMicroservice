@@ -7,5 +7,9 @@ namespace SeminarMicroservice.Services.Interface
     {
         PaginationModel<CitizenIdentityModel> GetCitizenIdentities(PaginationRequest req);
         CitizenIdentityModel GetCitizenIdentityByToken();
+        PaginationModel<HealthInsuranceModel> GetHealthInsurances(PaginationRequest req);
+        HealthInsuranceModel GetHealthInsuranceByToken();
+        PaginationModel<DrivingLicenseModel> GetDrivingLicenses(PaginationRequest req);
+        DrivingLicenseModel GetDrivingLicenseByToken();
     }
 }

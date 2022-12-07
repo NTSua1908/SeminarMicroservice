@@ -21,19 +21,49 @@ namespace SeminarMicroservice.Controllers
             _informationService = informationService;
         } 
 
-        [HttpGet("GetAll")]
+        [HttpGet("GetAllCitizenIdentity")]
         [Authorize(Roles = RoleConstant.Admin)]
-        public PaginationModel<CitizenIdentityModel> getAll([FromQuery] PaginationRequest req)
+        public PaginationModel<CitizenIdentityModel> getAllCitizenIdentity([FromQuery] PaginationRequest req)
         {
             req.Format();
             return _informationService.GetCitizenIdentities(req);
         }
 
-        [HttpGet("GetByToken")]
+        [HttpGet("GetCitizenIdentityByToken")]
         [Authorize(Roles = RoleConstant.Citizen)]
-        public CitizenIdentityModel getByToken()
+        public CitizenIdentityModel getCitizenIdentityByToken()
         {
             return _informationService.GetCitizenIdentityByToken();
+        }
+
+        [HttpGet("GetAllHealthInsurance")]
+        [Authorize(Roles = RoleConstant.Admin)]
+        public PaginationModel<HealthInsuranceModel> getAll([FromQuery] PaginationRequest req)
+        {
+            req.Format();
+            return _informationService.GetHealthInsurances(req);
+        }
+
+        [HttpGet("GetHealthInsuranceByToken")]
+        [Authorize(Roles = RoleConstant.Citizen)]
+        public HealthInsuranceModel getHealthInsuranceByToken()
+        {
+            return _informationService.GetHealthInsuranceByToken();
+        }
+
+        [HttpGet("GetAllDrivingLicense")]
+        [Authorize(Roles = RoleConstant.Admin)]
+        public PaginationModel<DrivingLicenseModel> getAllDrivingLicense([FromQuery] PaginationRequest req)
+        {
+            req.Format();
+            return _informationService.GetDrivingLicenses(req);
+        }
+
+        [HttpGet("GetDrivingLicenseByToken")]
+        [Authorize(Roles = RoleConstant.Citizen)]
+        public DrivingLicenseModel getDrivingLicenseByToken()
+        {
+            return _informationService.GetDrivingLicenseByToken();
         }
     }
 }

@@ -12,11 +12,11 @@ namespace SeminarMicroservice.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class InfomationController : ControllerBase
+    public class InformationController : ControllerBase
     {
         private readonly IInformationService _informationService;
 
-        public InfomationController(IInformationService informationService)
+        public InformationController(IInformationService informationService)
         {
             _informationService = informationService;
         } 
